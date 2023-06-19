@@ -90,12 +90,12 @@ public class List<U> {
     public int length;
 
 
-    public void init(){
+    private void init(){
         this.first = null;
         this.last = null;
         this.length = 0;
     }
-    public void init(U u){
+    private void init(U u){
         this.first = new Element<U>(u);
         this.last = first;
         this.length = 1;
@@ -112,7 +112,6 @@ public class List<U> {
             this.init();
             return;
         }
-        System.out.println("length: "+ tab.length);
         this.first = new Element<U>(tab[0]);
         Element<U> curr = this.first;
         for(int i = 1;i<tab.length;i++){
@@ -148,20 +147,24 @@ public class List<U> {
         }
     }
     public void insert(int index, U u){
-        if(index>=length)
+        if(index>length || index<0)
             throw new IllegalArgumentException("Index hors limites.");
-        if(this.last==null){
-            this.init(u);
+        if(this.last==null || index==length){
+            this.append(u);
         }else{
-            Element<U> tagetElement = this.get(index);
+            Element<U> targetElement = this.getElement(index);
             Element<U> newElement = new Element<U>(u);
-            newElement.next = tagetElement;
-            tagetElement.prev = newElement;
+            newElement.next = targetElement;
+            newElement.prev = targetElement.prev;
+            targetElement.prev = newElement;
+            if(newElement.prev!=null)
+                newElement.prev.next = newElement;
             this.length++;
+            if(index==0) this.first = newElement;
         }
     }
 
-    public Element<U> get(int index){
+    private Element<U> getElement(int index){
         if(index>=length)
             return null;
 
@@ -184,10 +187,14 @@ public class List<U> {
         }
         return curr;
     }
+
+    public U get(int index){
+        return this.getElement(index).element;
+    }
     public void set(int index, U u){
         if(index>=length)
             throw new IllegalArgumentException("Index hors limites.");
-        Element<U> e = this.get(index);
+        Element<U> e = this.getElement(index);
         e.setElement(u);
     }
     public boolean isEmpty(){
@@ -207,7 +214,9 @@ public class List<U> {
         this.length=0;
     }
     public void remove(int index) {
-        Element<U> target = this.get(index);
+        if(index>=this.length || index <0)
+            throw new IndexOutOfBoundsException("Index hors limites.");
+        Element<U> target = this.getElement(index);
         if(target.next!=null)
             target.next.prev = target.prev;
         if(target.prev!=null)

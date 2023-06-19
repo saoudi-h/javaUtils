@@ -38,7 +38,6 @@ public class Main {
         System.out.println("list b get : " + listB.get(2));
         System.out.println("list b get : " + listB.get(3));
         System.out.println("list b get : " + listB.get(4));
-        System.out.println("list b get : " + listB.get(5));
 
 
         // filtre carre
@@ -56,5 +55,12 @@ public class Main {
         // filtre yGreaterTwiceX
         System.out.println(listB.getFirst(point -> point.getY()>point.getX()*2));
 
+
+        //
+        List<Integer> list = new List<>();
+        list.insert(0,1);
+        list.insert(0,2);
+        list.insert(1,3);
+        list.insert(0,4);
     }
 }
