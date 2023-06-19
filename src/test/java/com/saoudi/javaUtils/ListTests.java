@@ -128,10 +128,7 @@ class ListTest {
 
     @Test
     public void testInsertElement(){
-        assertThrows(IllegalArgumentException.class, () -> {
-            list.insert(4,7);
-        });
-
+        assertThrows(IllegalArgumentException.class, () ->list.insert(4,7));
         list.insert(0,1);
         assertEquals(1,list.get(0));
         list.insert(0,2);
@@ -163,11 +160,24 @@ class ListTest {
         assertEquals(3, list.get(0));
 
         // Remove non-existent element
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.remove(1);
-        });
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(1));
     }
 
+    @Test
+    void testClear() {
+        list.append(1);
+        list.append(2);
+        list.append(3);
+
+        assertFalse(list.isEmpty());
+        assertEquals(3, list.length);
+
+        list.clear();
+        assertTrue(list.isEmpty());
+        assertEquals(0, list.length);
+        assertNull(list.getFirst());
+        assertNull(list.getLast());
+    }
 
     @Test
     public void testGetFirstFilter() {

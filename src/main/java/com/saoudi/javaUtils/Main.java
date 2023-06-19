@@ -6,7 +6,7 @@ public class Main {
         Point a = new Point(4,5);
         Point b = new Point(5,6);
         Point c = new Point(6,7);
-        List<Point> listA = new List<Point>(a);
+        List<Point> listA = new List<>(a);
         listA.append(b);
         listA.append(c);
         System.out.println(listA.getFirst());
@@ -24,7 +24,7 @@ public class Main {
         /////////////////////////////////////////////////////////////////////
 
 
-        List<Point> listB = new List<Point>(
+        List<Point> listB = new List<>(
                 new Point[]{
                         new Point(1,5),
                         new Point(4,4),
@@ -41,7 +41,7 @@ public class Main {
 
 
         // filtre carre
-        Filtre<Point> carre = new Filtre<Point>() {
+        Filtre<Point> carre = new Filtre<>() {
             @Override
             public boolean apply(Point p) {
                 return p.getX()==p.getY();

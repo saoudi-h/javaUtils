@@ -24,7 +24,7 @@ public class List<U> {
             this.last.setElement(last);
     }
 
-    private class Element<U>{
+    private static class Element<U>{
         private Element<U> next;
         private Element<U> prev;
         private U element;
@@ -96,7 +96,7 @@ public class List<U> {
         this.length = 0;
     }
     private void init(U u){
-        this.first = new Element<U>(u);
+        this.first = new Element<>(u);
         this.last = first;
         this.length = 1;
 
@@ -112,10 +112,10 @@ public class List<U> {
             this.init();
             return;
         }
-        this.first = new Element<U>(tab[0]);
+        this.first = new Element<>(tab[0]);
         Element<U> curr = this.first;
         for(int i = 1;i<tab.length;i++){
-            Element<U> next = new Element<U>(tab[i]);
+            Element<U> next = new Element<>(tab[i]);
             curr.setNext(next);
             next.setPrev(curr);
             curr = next;
@@ -128,7 +128,7 @@ public class List<U> {
         if(this.last==null){
             this.init(u);
         }else{
-            Element<U> newElement = new Element<U>(u);
+            Element<U> newElement = new Element<>(u);
             newElement.next = this.first;
             this.first.prev = newElement;
             this.first = newElement;
@@ -139,7 +139,7 @@ public class List<U> {
         if(this.last==null){
             this.init(u);
         }else{
-            Element<U> newElement = new Element<U>(u);
+            Element<U> newElement = new Element<>(u);
             newElement.prev = this.last;
             this.last.next = newElement;
             this.last = newElement;
@@ -153,7 +153,7 @@ public class List<U> {
             this.append(u);
         }else{
             Element<U> targetElement = this.getElement(index);
-            Element<U> newElement = new Element<U>(u);
+            Element<U> newElement = new Element<>(u);
             newElement.next = targetElement;
             newElement.prev = targetElement.prev;
             targetElement.prev = newElement;
@@ -165,10 +165,10 @@ public class List<U> {
     }
 
     private Element<U> getElement(int index){
-        if(index>=length)
+        if(index>=length || index <0)
             return null;
 
-        boolean isAsc = index<(Math.floor(this.length/2));
+        boolean isAsc = index < ( this.length / 2 );
         Element<U> curr;
         if(isAsc){
             curr = this.first;
@@ -189,13 +189,15 @@ public class List<U> {
     }
 
     public U get(int index){
-        return this.getElement(index).element;
+        Element<U> tmp = this.getElement(index);
+        return tmp==null? null: tmp.element;
+
     }
     public void set(int index, U u){
-        if(index>=length)
+        if(index>=length || index< 0)
             throw new IllegalArgumentException("Index hors limites.");
         Element<U> e = this.getElement(index);
-        e.setElement(u);
+        if(e!=null) e.setElement(u);
     }
     public boolean isEmpty(){
         return this.last==null;
@@ -229,12 +231,10 @@ public class List<U> {
 
     public U getFirst(Filtre<U> f){
         Element<U> curr = this.first;
-        int i = 0;
         while(curr!=null) {
             if (f.apply(curr.element))
                 return curr.element;
             curr = curr.next;
-            i++;
         }
         return null;
     }
