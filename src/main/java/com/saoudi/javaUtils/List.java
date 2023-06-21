@@ -4,14 +4,14 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class List<U> implements Iterable<U> {
+public class List<T> implements Iterable<T> {
 
     @Override
-    public Iterator<U> iterator() {
+    public Iterator<T> iterator() {
         return new ListIterator();
     }
-    private class ListIterator implements Iterator<U> {
-        private Element<U> current = first;
+    protected class ListIterator implements Iterator<T> {
+        protected Element<T> current = first;
 
         @Override
         public boolean hasNext() {
@@ -19,48 +19,48 @@ public class List<U> implements Iterable<U> {
         }
 
         @Override
-        public U next() {
+        public T next() {
             if (current == null) {
                 throw new NoSuchElementException();
             }
-            U element = current.getElement();
+            T element = current.getElement();
             current = current.getNext();
             return element;
         }
     }
 
-    public U getFirst() {
+    public T getFirst() {
         if(this.first==null) return null;
         return first.element;
     }
 
-    public void setFirst(U first) {
+    public void setFirst(T first) {
         if(this.first!=null)
             this.first.setElement(first);
     }
 
-    public U getLast() {
+    public T getLast() {
         if(this.first==null) return null;
         return last.getElement();
     }
 
-    public void setLast(U last) {
+    public void setLast(T last) {
         if(this.first!=null)
             this.last.setElement(last);
     }
 
-    private static class Element<U>{
-        private Element<U> next;
-        private Element<U> prev;
-        private U element;
+    protected static class Element<T>{
+        protected Element<T> next;
+        protected Element<T> prev;
+        protected T element;
 
 
-        public Element(Element<U> next, Element<U> prev, U element) {
+        public Element(Element<T> next, Element<T> prev, T element) {
             this.next = next;
             this.prev = prev;
             this.element = element;
         }
-        public Element(U element) {
+        public Element(T element) {
             this.next = null;
             this.prev = null;
             this.element = element;
@@ -68,11 +68,11 @@ public class List<U> implements Iterable<U> {
 
 
 
-        public U getElement() {
+        public T getElement() {
             return element;
         }
 
-        public void setElement(U element) {
+        public void setElement(T element) {
             this.element = element;
         }
 
@@ -94,34 +94,34 @@ public class List<U> implements Iterable<U> {
             return Objects.hash(element);
         }
 
-        public Element<U> getNext() {
+        public Element<T> getNext() {
             return next;
         }
 
-        public void setNext(Element<U> next) {
+        public void setNext(Element<T> next) {
             this.next = next;
         }
 
-        public Element<U> getPrev() {
+        public Element<T> getPrev() {
             return prev;
         }
 
-        public void setPrev(Element<U> prev) {
+        public void setPrev(Element<T> prev) {
             this.prev = prev;
         }
     }
-    private Element<U> first;
-    private Element<U> last;
+    protected Element<T> first;
+    protected Element<T> last;
     public int length;
 
 
-    private void init(){
+    protected void init(){
         this.first = null;
         this.last = null;
         this.length = 0;
     }
-    private void init(U u){
-        this.first = new Element<>(u);
+    protected void init(T t){
+        this.first = new Element<>(t);
         this.last = first;
         this.length = 1;
 
@@ -129,18 +129,18 @@ public class List<U> implements Iterable<U> {
     public List(){
         this.init();
     }
-    public List(U u){
-        this.init(u);
+    public List(T t){
+        this.init(t);
     }
-    public List(U[] tab){
+    public List(T[] tab){
         if(tab==null || tab.length==0){
             this.init();
             return;
         }
         this.first = new Element<>(tab[0]);
-        Element<U> curr = this.first;
+        Element<T> curr = this.first;
         for(int i = 1;i<tab.length;i++){
-            Element<U> next = new Element<>(tab[i]);
+            Element<T> next = new Element<>(tab[i]);
             curr.setNext(next);
             next.setPrev(curr);
             curr = next;
@@ -149,36 +149,36 @@ public class List<U> implements Iterable<U> {
         this.length = tab.length;
     }
 
-    public void push(U u){
+    public void push(T t){
         if(this.last==null){
-            this.init(u);
+            this.init(t);
         }else{
-            Element<U> newElement = new Element<>(u);
+            Element<T> newElement = new Element<>(t);
             newElement.next = this.first;
             this.first.prev = newElement;
             this.first = newElement;
             this.length++;
         }
     }
-    public void append(U u){
+    public void append(T t){
         if(this.last==null){
-            this.init(u);
+            this.init(t);
         }else{
-            Element<U> newElement = new Element<>(u);
+            Element<T> newElement = new Element<>(t);
             newElement.prev = this.last;
             this.last.next = newElement;
             this.last = newElement;
             this.length++;
         }
     }
-    public void insert(int index, U u){
+    public void insert(int index, T t){
         if(index>length || index<0)
             throw new IllegalArgumentException("Index hors limites.");
         if(this.last==null || index==length){
-            this.append(u);
+            this.append(t);
         }else{
-            Element<U> targetElement = this.getElement(index);
-            Element<U> newElement = new Element<>(u);
+            Element<T> targetElement = this.getElement(index);
+            Element<T> newElement = new Element<>(t);
             newElement.next = targetElement;
             newElement.prev = targetElement.prev;
             targetElement.prev = newElement;
@@ -189,12 +189,12 @@ public class List<U> implements Iterable<U> {
         }
     }
 
-    private Element<U> getElement(int index){
+    protected Element<T> getElement(int index){
         if(index>=length || index <0)
             return null;
 
         boolean isAsc = index < ( this.length / 2 );
-        Element<U> curr;
+        Element<T> curr;
         if(isAsc){
             curr = this.first;
             int i = 0;
@@ -213,26 +213,26 @@ public class List<U> implements Iterable<U> {
         return curr;
     }
 
-    public U get(int index){
-        Element<U> tmp = this.getElement(index);
+    public T get(int index){
+        Element<T> tmp = this.getElement(index);
         return tmp==null? null: tmp.element;
 
     }
-    public void set(int index, U u){
+    public void set(int index, T t){
         if(index>=length || index< 0)
             throw new IllegalArgumentException("Index hors limites.");
-        Element<U> e = this.getElement(index);
-        if(e!=null) e.setElement(u);
+        Element<T> e = this.getElement(index);
+        if(e!=null) e.setElement(t);
     }
     public boolean isEmpty(){
         return this.last==null;
     }
     public void clear(){
-        Element<U> curr = this.first;
+        Element<T> curr = this.first;
         this.first = this.last = null;
 
         while(curr !=null){
-            Element<U> next = curr.next;
+            Element<T> next = curr.next;
             curr.next = null;
             curr.prev = null;
             curr.element = null;
@@ -243,7 +243,7 @@ public class List<U> implements Iterable<U> {
     public void remove(int index) {
         if(index>=this.length || index <0)
             throw new IndexOutOfBoundsException("Index hors limites.");
-        Element<U> target = this.getElement(index);
+        Element<T> target = this.getElement(index);
         if(target.next!=null)
             target.next.prev = target.prev;
         if(target.prev!=null)
@@ -254,13 +254,24 @@ public class List<U> implements Iterable<U> {
         this.length--;
     }
 
-    public U find(Filtre<U> f){
-        Element<U> curr = this.first;
+    public T find(Filtre<T> f){
+        Element<T> curr = this.first;
         while(curr!=null) {
             if (f.apply(curr.element))
                 return curr.element;
             curr = curr.next;
         }
         return null;
+    }
+
+    public List<T> findAll(Filtre<T> f) {
+        List<T> newList = new List<>();
+        Element<T> curr = this.first;
+        while (curr != null) {
+            if (f.apply(curr.element))
+                newList.append(curr.element);
+            curr = curr.next;
+        }
+        return newList;
     }
 }

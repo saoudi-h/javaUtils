@@ -1,3 +1,5 @@
+![JavaUtils](images/javautils.png)
+
 # Class List - Structure de données doublement chaînée
 
 La classe `List` est une implémentation d'une structure de données doublement chaînée en Java. Elle offre des fonctionnalités de base telles que l'insertion, la suppression, l'accès aux éléments et bien d'autres.
@@ -21,7 +23,9 @@ Ce projet a été réalisé dans le cadre de l'apprentissage des concepts avanc�
 Pour tester la classe `List`, vous pouvez télécharger le répertoire:
 
 ```bash
-git clone https://github.com/saoudi-h/javaUtils.git 
+git clone https://github.com/saoudi-h/javaUtils.git
+cd javaUtils
+ 
 ```
 
 ## Tests
@@ -43,10 +47,11 @@ cd target
 java -jar javaUtils-1.0-SNAPSHOT.jar
 ```
 
-## Contributeurs
-
-Développé par Hakim Saoudi dans le cadre de sa formation de concepteur développeur d'application.
-
 ## Licence
 
 Ce mini projet est sous licence [MIT](https://opensource.org/licenses/MIT).
+
+## Contributeurs
+
+![Développé par Hakim Saoudi dans le cadre de sa formation de concepteur développeur d'application.
+](images/hakimsaoudi_javaUtils.png)

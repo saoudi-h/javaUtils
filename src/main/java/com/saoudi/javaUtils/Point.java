@@ -2,7 +2,7 @@ package com.saoudi.javaUtils;
 
 import java.util.Objects;
 
-public class Point {
+public class Point implements Cloneable{
     private int x;
     private int y;
 
@@ -30,6 +30,14 @@ public class Point {
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
         return x == point.x && y == point.y;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Point clonedPoint = (Point) super.clone();
+        clonedPoint.x = this.x;
+        clonedPoint.y = this.y;
+        return clonedPoint;
     }
 
     @Override
