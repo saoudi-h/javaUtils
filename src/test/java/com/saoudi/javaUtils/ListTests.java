@@ -180,7 +180,7 @@ class ListTest {
     }
 
     @Test
-    public void testGetFirstFilter() {
+    public void testFind() {
         // Test avec filtre qui retourne vrai pour les nombres pairs
         Filtre<Integer> evenFilter = new Filtre<Integer>() {
             @Override
@@ -195,7 +195,7 @@ class ListTest {
         list.append(4);
         list.append(5);
 
-        Integer result = list.getFirst(evenFilter);
+        Integer result = list.find(evenFilter);
         assertEquals(2, result);
 
         // Test avec filtre qui retourne le premiere entier divisible par 2
@@ -206,20 +206,33 @@ class ListTest {
             }
         };
 
-        result = list.getFirst(oddFilter);
+        result = list.find(oddFilter);
         assertEquals(1, result);
 
         // Test avec filtre qui retourne le première element divisible par 3
         Filtre<Integer> divisibleByThreeFilter = e-> e % 3 == 0;
 
 
-        result = list.getFirst(divisibleByThreeFilter);
+        result = list.find(divisibleByThreeFilter);
         assertEquals(3, result);
 
         // Test avec Filtre qui retourne le premier nombre >10
 
         // Aucun resultat ne satisfait la condition du filtre
-        result = list.getFirst(e->e>10);
+        result = list.find(e->e>10);
         assertNull(result);
+    }
+
+    // test iterable
+
+    @Test
+    public void testIterable(){
+        Integer[] array = {1, 2, 3, 4, 5};
+        List<Integer> list = new List<>(array);
+        int i = 0;
+        for (Integer element:list) {
+            assertEquals(element,array[i]);
+            i++;
+        }
     }
 }

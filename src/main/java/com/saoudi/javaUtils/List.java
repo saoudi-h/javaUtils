@@ -1,8 +1,33 @@
 package com.saoudi.javaUtils;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class List<U> {
+public class List<U> implements Iterable<U> {
+
+    @Override
+    public Iterator<U> iterator() {
+        return new ListIterator();
+    }
+    private class ListIterator implements Iterator<U> {
+        private Element<U> current = first;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public U next() {
+            if (current == null) {
+                throw new NoSuchElementException();
+            }
+            U element = current.getElement();
+            current = current.getNext();
+            return element;
+        }
+    }
 
     public U getFirst() {
         if(this.first==null) return null;
@@ -229,7 +254,7 @@ public class List<U> {
         this.length--;
     }
 
-    public U getFirst(Filtre<U> f){
+    public U find(Filtre<U> f){
         Element<U> curr = this.first;
         while(curr!=null) {
             if (f.apply(curr.element))
