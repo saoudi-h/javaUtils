@@ -32,7 +32,7 @@ public class Main {
 
     }
 
-    public static void listExamples(){
+    public static void listExamples() {
         System.out.println(" ".repeat(100));
         System.out.println("Exemples d'utilisation de notre structure de données doublement chaînée !");
         System.out.println(" ".repeat(100));
@@ -111,8 +111,6 @@ public class Main {
         System.out.println(list.length);
 
 
-
-
         // insert
         printTitleBox("█ Exemples d'insertion:");
 
@@ -120,12 +118,12 @@ public class Main {
         System.out.println("-".repeat(80));
 
         list = new List<>();
-        list.insert(0, new Point(1,1));
-        list.insert(1, new Point(2,2));
-        list.insert(2, new Point(3,3));
-        list.insert(0, new Point(4,4));
+        list.insert(0, new Point(1, 1));
+        list.insert(1, new Point(2, 2));
+        list.insert(2, new Point(3, 3));
+        list.insert(0, new Point(4, 4));
         printCode(
-                        "list = new List<>();\n" +
+                "list = new List<>();\n" +
                         "list.insert(0, new Point(1,1));\n" +
                         "list.insert(1, new Point(2,2));\n" +
                         "list.insert(2, new Point(3,3));\n" +
@@ -159,15 +157,13 @@ public class Main {
                 new Point(5, 1)
         };
 
-        for(Point p:points){
+        for (Point p : points) {
             System.out.println(p);
         }
 
         list = new List<>(points);
         System.out.println("\n// Réaffectation de notre variable list avec un nouvel objet List crée a partir d'un tableau de points cet fois");
         printCode("list = new List<>(points);");
-
-
 
 
         // filtre carre
@@ -190,7 +186,6 @@ public class Main {
         System.out.println(list.find(carre));
 
 
-
         // Filtre xGreaterTwiceY
         Filtre<Point> xGreaterTwiceY = point -> point.getX() > point.getY() * 2;
         System.out.println("\n// creation de 'xGreaterTwiceY' une instance d'une class anonyme et fonctionnel qui implemente Filtre ");
@@ -204,7 +199,6 @@ public class Main {
         System.out.println("\n// creation et utilisation d'un filtre anonyme qui aurais pu s'appeler 'yGreaterTwiceX'");
         printCode("list.find(point -> point.getY() > point.getX() * 2)");
         System.out.println(list.find(point -> point.getY() > point.getX() * 2));
-
 
 
         /////////////////////////////////////////////////////////////////////////////////////
@@ -241,8 +235,6 @@ public class Main {
         }
 
 
-
-
         /////////////////////////////////////////////////////////////////////////////////////
         // Find All
         /////////////////////////////////////////////////////////////////////////////////////
@@ -277,7 +269,7 @@ public class Main {
                 new Point(5, 15)
         };
 
-        for(Point p:points2){
+        for (Point p : points2) {
             System.out.println(p);
         }
 
@@ -292,10 +284,9 @@ public class Main {
                 "            System.out.println(p);\n" +
                 "        }");
         List<Point> findList = list.findAll(carre);
-        for(Point p:findList){
+        for (Point p : findList) {
             System.out.println(p);
         }
-
 
 
         // Filtre xGreaterTwiceY
@@ -305,7 +296,7 @@ public class Main {
                 "            System.out.println(p);\n" +
                 "        }");
         findList = list.findAll(xGreaterTwiceY);
-        for(Point p:findList){
+        for (Point p : findList) {
             System.out.println(p);
         }
 
@@ -316,11 +307,12 @@ public class Main {
                 "            System.out.println(p);\n" +
                 "        }");
         findList = list.findAll(point -> point.getY() > point.getX() * 2);
-        for(Point p:findList){
+        for (Point p : findList) {
             System.out.println(p);
         }
     }
-    public static void listCloneableExamples(){
+
+    public static void listCloneableExamples() {
         System.out.println(" ".repeat(100));
         System.out.println("Exemples d'utilisation de notre structure de données doublement chaînée avec contrainte T extends Cloneable ");
         System.out.println(" ".repeat(100));
@@ -399,8 +391,6 @@ public class Main {
         System.out.println(list.length);
 
 
-
-
         // insert
         printTitleBox("█ Exemples d'insertion:");
 
@@ -408,12 +398,12 @@ public class Main {
         System.out.println("-".repeat(80));
 
         list = new ListCloneable<>();
-        list.insert(0, new Point(1,1));
-        list.insert(1, new Point(2,2));
-        list.insert(2, new Point(3,3));
-        list.insert(0, new Point(4,4));
+        list.insert(0, new Point(1, 1));
+        list.insert(1, new Point(2, 2));
+        list.insert(2, new Point(3, 3));
+        list.insert(0, new Point(4, 4));
         printCode(
-                        "list = new ListCloneable<>();\n" +
+                "list = new ListCloneable<>();\n" +
                         "list.insert(0, new Point(1,1));\n" +
                         "list.insert(1, new Point(2,2));\n" +
                         "list.insert(2, new Point(3,3));\n" +
@@ -447,15 +437,13 @@ public class Main {
                 new Point(5, 1)
         };
 
-        for(Point p:points){
+        for (Point p : points) {
             System.out.println(p);
         }
 
         list = new ListCloneable<>(points);
         System.out.println("\n// Réaffectation de notre variable list avec un nouvel objet List crée a partir d'un tableau de points cet fois");
         printCode("list = new List<>(points);");
-
-
 
 
         // filtre carre
@@ -478,7 +466,6 @@ public class Main {
         System.out.println(list.find(carre));
 
 
-
         // Filtre xGreaterTwiceY
         Filtre<Point> xGreaterTwiceY = point -> point.getX() > point.getY() * 2;
         System.out.println("\n// creation de 'xGreaterTwiceY' une instance d'une class anonyme et fonctionnel qui implemente Filtre ");
@@ -492,7 +479,6 @@ public class Main {
         System.out.println("\n// creation et utilisation d'un filtre anonyme qui aurais pu s'appeler 'yGreaterTwiceX'");
         printCode("list.find(point -> point.getY() > point.getX() * 2)");
         System.out.println(list.find(point -> point.getY() > point.getX() * 2));
-
 
 
         /////////////////////////////////////////////////////////////////////////////////////
@@ -529,8 +515,6 @@ public class Main {
         }
 
 
-
-
         /////////////////////////////////////////////////////////////////////////////////////
         // Find All
         /////////////////////////////////////////////////////////////////////////////////////
@@ -565,7 +549,7 @@ public class Main {
                 new Point(5, 15)
         };
 
-        for(Point p:points2){
+        for (Point p : points2) {
             System.out.println(p);
         }
 
@@ -580,10 +564,9 @@ public class Main {
                 "            System.out.println(p);\n" +
                 "        }");
         ListCloneable<Point> findList = list.findAll(carre);
-        for(Point p:findList){
+        for (Point p : findList) {
             System.out.println(p);
         }
-
 
 
         // Filtre xGreaterTwiceY
@@ -593,7 +576,7 @@ public class Main {
                 "            System.out.println(p);\n" +
                 "        }");
         findList = list.findAll(xGreaterTwiceY);
-        for(Point p:findList){
+        for (Point p : findList) {
             System.out.println(p);
         }
 
@@ -604,7 +587,7 @@ public class Main {
                 "            System.out.println(p);\n" +
                 "        }");
         findList = list.findAll(point -> point.getY() > point.getX() * 2);
-        for(Point p:findList){
+        for (Point p : findList) {
             System.out.println(p);
         }
 
@@ -615,49 +598,51 @@ public class Main {
                 new Point(4, 4),
         };
         list = new ListCloneable<>(points2);
-        ListCloneable<Point> list2 = list.findAll(x->true);
+        ListCloneable<Point> list2 = list.findAll(x -> true);
 
-        for(int i=0;i< list2.length;i++){
+        for (int i = 0; i < list2.length; i++) {
 
             // is same values
-            if(list.get(i).equals(list2.get(i))){
-                System.out.println("list["+i+"] equal list2["+i+"]");
-            }else{
-                System.out.println("list["+i+"] not equal list2["+i+"]");
+            if (list.get(i).equals(list2.get(i))) {
+                System.out.println("list[" + i + "] equal list2[" + i + "]");
+            } else {
+                System.out.println("list[" + i + "] not equal list2[" + i + "]");
             }
 
             // is same instance
-            if(list.get(i)==list2.get(i)){
-                System.out.println("list["+i+"] == list2["+i+"]");
-            }else{
-                System.out.println("list["+i+"] != list2["+i+"]");
+            if (list.get(i) == list2.get(i)) {
+                System.out.println("list[" + i + "] == list2[" + i + "]");
+            } else {
+                System.out.println("list[" + i + "] != list2[" + i + "]");
             }
         }
 
 
     }
-    private static void printProjectName(){
+
+    private static void printProjectName() {
         printFromArray(new String[]{
-                "                                                                                   " ,
-                "           ██╗ █████╗ ██╗   ██╗ █████╗ ██╗   ██╗████████╗██╗██╗     ███████╗       " ,
-                "           ██║██╔══██╗██║   ██║██╔══██╗██║   ██║╚══██╔══╝██║██║     ██╔════╝       " ,
-                "           ██║███████║██║   ██║███████║██║   ██║   ██║   ██║██║     ███████╗       " ,
-                "      ██   ██║██╔══██║╚██╗ ██╔╝██╔══██║██║   ██║   ██║   ██║██║     ╚════██║       " ,
-                "      ╚█████╔╝██║  ██║ ╚████╔╝ ██║  ██║╚██████╔╝   ██║   ██║███████╗███████║       " ,
-                "       ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝       " ,
+                "                                                                                   ",
+                "           ██╗ █████╗ ██╗   ██╗ █████╗ ██╗   ██╗████████╗██╗██╗     ███████╗       ",
+                "           ██║██╔══██╗██║   ██║██╔══██╗██║   ██║╚══██╔══╝██║██║     ██╔════╝       ",
+                "           ██║███████║██║   ██║███████║██║   ██║   ██║   ██║██║     ███████╗       ",
+                "      ██   ██║██╔══██║╚██╗ ██╔╝██╔══██║██║   ██║   ██║   ██║██║     ╚════██║       ",
+                "      ╚█████╔╝██║  ██║ ╚████╔╝ ██║  ██║╚██████╔╝   ██║   ██║███████╗███████║       ",
+                "       ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝       ",
                 "                                                                                   "
         });
     }
-    private static void printSignature(){
+
+    private static void printSignature() {
         printFromArray(new String[]{
-                "                                                                                                   " ,
-                "       ██╗  ██╗ █████╗ ██╗  ██╗██╗███╗   ███╗    ███████╗ █████╗  ██████╗ ██╗   ██╗██████╗ ██╗     " ,
-                "       ██║  ██║██╔══██╗██║ ██╔╝██║████╗ ████║    ██╔════╝██╔══██╗██╔═══██╗██║   ██║██╔══██╗██║     " ,
-                "       ███████║███████║█████╔╝ ██║██╔████╔██║    ███████╗███████║██║   ██║██║   ██║██║  ██║██║     " ,
-                "       ██╔══██║██╔══██║██╔═██╗ ██║██║╚██╔╝██║    ╚════██║██╔══██║██║   ██║██║   ██║██║  ██║██║     " ,
-                "       ██║  ██║██║  ██║██║  ██╗██║██║ ╚═╝ ██║    ███████║██║  ██║╚██████╔╝╚██████╔╝██████╔╝██║     " ,
-                "       ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝     ╚═╝    ╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═════╝ ╚═╝     " ,
-                "                                                                                                   " }
+                "                                                                                                   ",
+                "       ██╗  ██╗ █████╗ ██╗  ██╗██╗███╗   ███╗    ███████╗ █████╗  ██████╗ ██╗   ██╗██████╗ ██╗     ",
+                "       ██║  ██║██╔══██╗██║ ██╔╝██║████╗ ████║    ██╔════╝██╔══██╗██╔═══██╗██║   ██║██╔══██╗██║     ",
+                "       ███████║███████║█████╔╝ ██║██╔████╔██║    ███████╗███████║██║   ██║██║   ██║██║  ██║██║     ",
+                "       ██╔══██║██╔══██║██╔═██╗ ██║██║╚██╔╝██║    ╚════██║██╔══██║██║   ██║██║   ██║██║  ██║██║     ",
+                "       ██║  ██║██║  ██║██║  ██╗██║██║ ╚═╝ ██║    ███████║██║  ██║╚██████╔╝╚██████╔╝██████╔╝██║     ",
+                "       ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝     ╚═╝    ╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═════╝ ╚═╝     ",
+                "                                                                                                   "}
         );
     }
 }

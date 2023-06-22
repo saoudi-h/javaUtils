@@ -1,5 +1,6 @@
 package com.saoudi.javaUtils;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -123,5 +124,35 @@ public class List<T> extends ListAbstract<T> {
             curr = curr.next;
         }
         return newList;
+    }
+
+    /**
+     * Retourne un nouvel ArrayList contenant tous les éléments.
+     *
+     * @return un ArrayList contenant tous nos éléments.
+     */
+    @Override
+    public ArrayList<T> toArrayList(){
+        ArrayList<T> res = new ArrayList<>();
+        for(T t:this){
+            res.add(t);
+        }
+        return res;
+    }
+
+    /**
+     * Retourne un nouveau tableau T[] contenant tous les éléments.
+     *
+     * @return un tableau T[] contenant tous nos éléments.
+     */
+    @Override
+    public Object[] toArray(){
+        Object[] res = new Object[length];
+        int i = 0;
+        for(T t:this){
+            res[i] = t;
+            i++;
+        }
+        return res;
     }
 }

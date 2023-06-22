@@ -3,6 +3,8 @@ package com.saoudi.javaUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -265,5 +267,39 @@ public class ListCloneableTest {
         // Aucun résultat ne satisfait la condition du filtre
         result = list.findAll(e->e.getX()>15);
         assertEquals(0, result.length);
+    }
+
+
+    @Test
+    public void testToArrayList() {
+        Point[] array = {new Point(1), new Point(2), new Point(3), new Point(4), new Point(5)};
+        list = new ListCloneable<>(array);
+        ArrayList<Point> arrayList = list.toArrayList();
+        assertEquals(list.length, arrayList.size());
+        assertTrue(arrayList.contains(array[0]));
+        assertTrue(arrayList.contains(array[1]));
+        assertTrue(arrayList.contains(array[2]));
+        assertTrue(arrayList.contains(array[3]));
+        assertTrue(arrayList.contains(array[4]));
+    }
+
+    @Test
+    public void testToArray() {
+        Point[] array = {new Point(1), new Point(2), new Point(3), new Point(4), new Point(5)};
+        ListCloneable<Point> list2 = new ListCloneable<>(array);
+        Object[] tab = list2.toArray();
+        assertEquals(list2.length, tab.length);
+        assertEquals(tab[0],array[0]);
+        assertEquals(tab[1],array[1]);
+        assertEquals(tab[2],array[2]);
+        assertEquals(tab[3],array[3]);
+        assertEquals(tab[4],array[4]);
+
+        assertNotSame((Point)tab[0],array[0]);
+        assertNotSame((Point)tab[1],array[1]);
+        assertNotSame((Point)tab[2],array[2]);
+        assertNotSame((Point)tab[3],array[3]);
+        assertNotSame((Point)tab[4],array[4]);
+
     }
 }

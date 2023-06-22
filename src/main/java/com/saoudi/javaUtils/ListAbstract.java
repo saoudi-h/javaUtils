@@ -1,5 +1,6 @@
 package com.saoudi.javaUtils;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -288,6 +289,21 @@ public abstract class ListAbstract<T> implements Iterable<T> {
      * @return une liste contenant tous les éléments correspondants au filtre
      */
     public abstract ListAbstract<T> findAll(Filtre<T> f);
+
+    /**
+     * Méthode abstraite retourne un ArrayList contenant tous les éléments de List.
+     *
+     * @return un ArrayList contenant tous nos éléments.
+     */
+    public abstract ArrayList<T> toArrayList();
+
+    /**
+     * Méthode abstraite qui retourne un nouveau tableau Object[] contenant tous les éléments de type T.
+     *
+     * @return un tableau Object[] contenant tous nos éléments.
+     */
+    public abstract Object[] toArray();
+
 
     /**
      * Classe interne représentant un élément d'une liste.

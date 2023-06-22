@@ -1,6 +1,8 @@
 package com.saoudi.javaUtils;
 
+import java.lang.reflect.Array;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 
 /**
  * Classe représentant une liste chainée d'éléments implémentant l'interface Clonaeable.
@@ -15,6 +17,8 @@ import java.sql.SQLOutput;
  */
 public class ListCloneable<T extends Cloneable> extends ListAbstract<T> {
 
+
+    private Class<T> elementType;
     /**
      * Construit une liste avec un seul élément clonable.
      *
@@ -175,5 +179,35 @@ public class ListCloneable<T extends Cloneable> extends ListAbstract<T> {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    /**
+     * Retourne un nouvel ArrayList contenant la copie de tous les éléments.
+     *
+     * @return un ArrayList contenant la copie de tous nos éléments.
+     */
+    @Override
+    public ArrayList<T> toArrayList(){
+        ArrayList<T> res = new ArrayList<>();
+        for(T t:this){
+            res.add(copyT(t));
+        }
+        return res;
+    }
+
+    /**
+     * Retourne un nouveau tableau Object[] contenant la copie de tous les éléments.
+     *
+     * @return un tableau Object[] contenant la copie de tous nos éléments.
+     */
+    @Override
+    public Object[] toArray(){
+        Object[] res = new Object[length];
+        int i = 0;
+        for(T t:this){
+            res[i] = copyT(t);
+            i++;
+        }
+        return res;
     }
 }
