@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ListTest {
+/**
+ *
+ */
+public class ListTest {
 
     private List<Integer> list;
 
@@ -198,7 +201,7 @@ class ListTest {
         Integer result = list.find(evenFilter);
         assertEquals(2, result);
 
-        // Test avec filtre qui retourne le premiere entier divisible par 2
+        // Test avec filtre qui retourne le premiere entier impaire
         Filtre<Integer> oddFilter = new Filtre<Integer>() {
             @Override
             public boolean apply(Integer element) {
@@ -234,5 +237,56 @@ class ListTest {
             assertEquals(element,array[i]);
             i++;
         }
+    }
+
+
+
+    @Test
+    void testFindAll() {
+        // Test avec filtre qui retourne vrai pour les nombres pairs
+        Filtre<Integer> evenFilter = new Filtre<Integer>() {
+            @Override
+            public boolean apply(Integer element) {
+                return element % 2 == 0;
+            }
+        };
+
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+        list.append(5);
+        list.append(6);
+
+        List<Integer> result = list.findAll(evenFilter);
+        assertEquals(2, result.get(0));
+        assertEquals(4, result.get(1));
+
+        // Test avec filtre qui retourne les nombres impaires
+        Filtre<Integer> oddFilter = new Filtre<Integer>() {
+            @Override
+            public boolean apply(Integer element) {
+                return element % 2 != 0;
+            }
+        };
+
+        result = list.findAll(oddFilter);
+        assertEquals(1, result.get(0));
+        assertEquals(3, result.get(1));
+        assertEquals(5, result.get(2));
+
+        // Test avec filtre qui retourne le premier element divisible par 3.
+        Filtre<Integer> divisibleByThreeFilter = e-> e % 3 == 0;
+
+
+        result = list.findAll(divisibleByThreeFilter);
+        assertEquals(3, result.get(0));
+        assertEquals(6, result.get(1));
+
+        // Test avec Filtre qui retourne le premier nombre >10
+
+        // Aucun résultat ne satisfait la condition du filtre
+        result = list.findAll(e->e>10);
+        assertEquals(0,result.length);
     }
 }

@@ -1,36 +1,21 @@
 package com.saoudi.javaUtils;
 
+import static com.diogonunes.jcolor.Attribute.*;
+
 import static com.saoudi.javaUtils.ConsoleColor.*;
 public class Main {
     public static void main(String[] args) {
 
+        printProjectName();
 
-        printFromArray(new String[]{
-                        "                                                                                   " ,
-                        "           ██╗ █████╗ ██╗   ██╗ █████╗ ██╗   ██╗████████╗██╗██╗     ███████╗       " ,
-                        "           ██║██╔══██╗██║   ██║██╔══██╗██║   ██║╚══██╔══╝██║██║     ██╔════╝       " ,
-                        "           ██║███████║██║   ██║███████║██║   ██║   ██║   ██║██║     ███████╗       " ,
-                        "      ██   ██║██╔══██║╚██╗ ██╔╝██╔══██║██║   ██║   ██║   ██║██║     ╚════██║       " ,
-                        "      ╚█████╔╝██║  ██║ ╚████╔╝ ██║  ██║╚██████╔╝   ██║   ██║███████╗███████║       " ,
-                        "       ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝       " ,
-                        "                                                                                   "
-                        });
-
-
+        printBigTitleBox("List");
         listExamples();
+
+        printBigTitleBox("ListCloneable");
         listCloneableExamples();
 
+        printSignature();
 
-        printFromArray(new String[]{
-                "                                                                                                   " ,
-                "       ██╗  ██╗ █████╗ ██╗  ██╗██╗███╗   ███╗    ███████╗ █████╗  ██████╗ ██╗   ██╗██████╗ ██╗     " ,
-                "       ██║  ██║██╔══██╗██║ ██╔╝██║████╗ ████║    ██╔════╝██╔══██╗██╔═══██╗██║   ██║██╔══██╗██║     " ,
-                "       ███████║███████║█████╔╝ ██║██╔████╔██║    ███████╗███████║██║   ██║██║   ██║██║  ██║██║     " ,
-                "       ██╔══██║██╔══██║██╔═██╗ ██║██║╚██╔╝██║    ╚════██║██╔══██║██║   ██║██║   ██║██║  ██║██║     " ,
-                "       ██║  ██║██║  ██║██║  ██╗██║██║ ╚═╝ ██║    ███████║██║  ██║╚██████╔╝╚██████╔╝██████╔╝██║     " ,
-                "       ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝     ╚═╝    ╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═════╝ ╚═╝     " ,
-                "                                                                                                   " }
-                );
 
     }
 
@@ -126,12 +111,12 @@ public class Main {
         list.insert(1, new Point(2,2));
         list.insert(2, new Point(3,3));
         list.insert(0, new Point(4,4));
-        System.out.println(
-                ">list = new List<>();\n" +
-                        ">list.insert(0, new Point(1,1));\n" +
-                        ">list.insert(1, new Point(2,2));\n" +
-                        ">list.insert(2, new Point(3,3));\n" +
-                        ">list.insert(0, new Point(4,4));");
+        printCode(
+                        "list = new List<>();\n" +
+                        "list.insert(0, new Point(1,1));\n" +
+                        "list.insert(1, new Point(2,2));\n" +
+                        "list.insert(2, new Point(3,3));\n" +
+                        "list.insert(0, new Point(4,4));");
         // affichage
         System.out.println("Resultat:");
         printCode("list.get(0);");
@@ -324,7 +309,7 @@ public class Main {
     }
     public static void listCloneableExamples(){
         System.out.println(" ".repeat(100));
-        System.out.println("Exemples d'utilisation de notre structure de données doublement chaînée !");
+        System.out.println("Exemples d'utilisation de notre structure de données doublement chaînée avec contrainte T extends Cloneable ");
         System.out.println(" ".repeat(100));
 
 
@@ -352,8 +337,8 @@ public class Main {
         System.out.println("\n// creation d'une nouvelle liste List avec le constructeur a un argument");
         System.out.println("-".repeat(80));
 
-        List<Point> list = new List<>(a);
-        printCode("List<Point> list = new List<>(a);");
+        ListCloneable<Point> list = new ListCloneable<>(a);
+        printCode("ListCloneable<Point> list = new ListCloneable<>(a);");
 
 
         System.out.println("\n// Ajout a la fin de la liste de b et c");
@@ -409,17 +394,17 @@ public class Main {
         System.out.println("\nRéaffectation de notre variable list avec un nouvel objet 'List' vide");
         System.out.println("-".repeat(80));
 
-        list = new List<>();
+        list = new ListCloneable<>();
         list.insert(0, new Point(1,1));
         list.insert(1, new Point(2,2));
         list.insert(2, new Point(3,3));
         list.insert(0, new Point(4,4));
-        System.out.println(
-                ">list = new List<>();\n" +
-                        ">list.insert(0, new Point(1,1));\n" +
-                        ">list.insert(1, new Point(2,2));\n" +
-                        ">list.insert(2, new Point(3,3));\n" +
-                        ">list.insert(0, new Point(4,4));");
+        printCode(
+                        "list = new ListCloneable<>();\n" +
+                        "list.insert(0, new Point(1,1));\n" +
+                        "list.insert(1, new Point(2,2));\n" +
+                        "list.insert(2, new Point(3,3));\n" +
+                        "list.insert(0, new Point(4,4));");
         // affichage
         System.out.println("Resultat:");
         printCode("list.get(0);");
@@ -453,7 +438,7 @@ public class Main {
             System.out.println(p);
         }
 
-        list = new List<>(points);
+        list = new ListCloneable<>(points);
         System.out.println("\n// Réaffectation de notre variable list avec un nouvel objet List crée a partir d'un tableau de points cet fois");
         printCode("list = new List<>(points);");
 
@@ -505,14 +490,14 @@ public class Main {
 
 
         System.out.println("Creation d'un nouvel objet 'List'");
-        list = new List<>(new Point[]{
+        list = new ListCloneable<>(new Point[]{
                 new Point(4, 1),
                 new Point(8, 4),
                 new Point(4, 9),
                 new Point(1, 3),
                 new Point(7, 7)
         });
-        printCode("list = new List<>(\n" +
+        printCode("list = new ListCloneable<>(\n" +
                 "        new Point[]{\n" +
                 "        new Point(4, 1),\n" +
                 "        new Point(8, 4),\n" +
@@ -571,7 +556,7 @@ public class Main {
             System.out.println(p);
         }
 
-        list = new List<>(points2);
+        list = new ListCloneable<>(points2);
         System.out.println("\n// Réaffectation de notre variable list avec un nouvel objet List crée a partir d'un tableau de points cet fois");
         printCode("list = new List<>(points2);");
 
@@ -581,7 +566,7 @@ public class Main {
                 "        for(Point p:findList){\n" +
                 "            System.out.println(p);\n" +
                 "        }");
-        List<Point> findList = list.findAll(carre);
+        ListCloneable<Point> findList = list.findAll(carre);
         for(Point p:findList){
             System.out.println(p);
         }
@@ -609,5 +594,57 @@ public class Main {
         for(Point p:findList){
             System.out.println(p);
         }
+
+        // Vérification du charactère Cloneable de la Class
+
+        points2 = new Point[]{
+                new Point(1, 5),
+                new Point(4, 4),
+        };
+        list = new ListCloneable<>(points2);
+        ListCloneable<Point> list2 = list.findAll(x->true);
+
+        for(int i=0;i< list2.length;i++){
+
+            // is same values
+            if(list.get(i).equals(list2.get(i))){
+                System.out.println("list["+i+"] equal list2["+i+"]");
+            }else{
+                System.out.println("list["+i+"] not equal list2["+i+"]");
+            }
+
+            // is same instance
+            if(list.get(i)==list2.get(i)){
+                System.out.println("list["+i+"] == list2["+i+"]");
+            }else{
+                System.out.println("list["+i+"] != list2["+i+"]");
+            }
+        }
+
+
+    }
+    private static void printProjectName(){
+        printFromArray(new String[]{
+                "                                                                                   " ,
+                "           ██╗ █████╗ ██╗   ██╗ █████╗ ██╗   ██╗████████╗██╗██╗     ███████╗       " ,
+                "           ██║██╔══██╗██║   ██║██╔══██╗██║   ██║╚══██╔══╝██║██║     ██╔════╝       " ,
+                "           ██║███████║██║   ██║███████║██║   ██║   ██║   ██║██║     ███████╗       " ,
+                "      ██   ██║██╔══██║╚██╗ ██╔╝██╔══██║██║   ██║   ██║   ██║██║     ╚════██║       " ,
+                "      ╚█████╔╝██║  ██║ ╚████╔╝ ██║  ██║╚██████╔╝   ██║   ██║███████╗███████║       " ,
+                "       ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝       " ,
+                "                                                                                   "
+        });
+    }
+    private static void printSignature(){
+        printFromArray(new String[]{
+                "                                                                                                   " ,
+                "       ██╗  ██╗ █████╗ ██╗  ██╗██╗███╗   ███╗    ███████╗ █████╗  ██████╗ ██╗   ██╗██████╗ ██╗     " ,
+                "       ██║  ██║██╔══██╗██║ ██╔╝██║████╗ ████║    ██╔════╝██╔══██╗██╔═══██╗██║   ██║██╔══██╗██║     " ,
+                "       ███████║███████║█████╔╝ ██║██╔████╔██║    ███████╗███████║██║   ██║██║   ██║██║  ██║██║     " ,
+                "       ██╔══██║██╔══██║██╔═██╗ ██║██║╚██╔╝██║    ╚════██║██╔══██║██║   ██║██║   ██║██║  ██║██║     " ,
+                "       ██║  ██║██║  ██║██║  ██╗██║██║ ╚═╝ ██║    ███████║██║  ██║╚██████╔╝╚██████╔╝██████╔╝██║     " ,
+                "       ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝     ╚═╝    ╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═════╝ ╚═╝     " ,
+                "                                                                                                   " }
+        );
     }
 }

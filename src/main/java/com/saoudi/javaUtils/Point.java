@@ -33,7 +33,7 @@ public class Point implements Cloneable{
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Point clone() throws CloneNotSupportedException {
         Point clonedPoint = (Point) super.clone();
         clonedPoint.x = this.x;
         clonedPoint.y = this.y;
