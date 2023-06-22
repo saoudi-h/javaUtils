@@ -4,19 +4,43 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
+/**
+ * Classe concrète représentant une liste générique.
+ *
+ * @param <T> le type des éléments de la liste
+ */
 public class List<T> extends ListAbstract<T> {
 
-
-    public List(){
+    /**
+     * Construit une liste vide.
+     */
+    public List() {
         this.init();
     }
-    public List(T t){
+
+    /**
+     * Construit une liste avec un seul élément.
+     *
+     * @param t l'élément à ajouter à la liste
+     */
+    public List(T t) {
         this.init(t);
     }
-    public List(T[] tab){
+
+    /**
+     * Construit une liste à partir d'un tableau d'éléments.
+     *
+     * @param tab le tableau d'éléments à ajouter à la liste
+     */
+    public List(T[] tab) {
         this.init(tab);
     }
 
+    /**
+     * Initialise la liste avec un seul élément.
+     *
+     * @param t l'élément à ajouter à la liste
+     */
     @Override
     protected void init(T t) {
         this.first = new Element<>(t);
@@ -24,15 +48,20 @@ public class List<T> extends ListAbstract<T> {
         this.length = 1;
     }
 
+    /**
+     * Initialise la liste à partir d'un tableau d'éléments.
+     *
+     * @param tab le tableau d'éléments à ajouter à la liste
+     */
     @Override
     protected void init(T[] tab) {
-        if(tab==null || tab.length==0){
+        if (tab == null || tab.length == 0) {
             this.init();
             return;
         }
         this.first = new Element<>(tab[0]);
         Element<T> curr = this.first;
-        for(int i = 1;i<tab.length;i++){
+        for (int i = 1; i < tab.length; i++) {
             Element<T> next = new Element<>(tab[i]);
             curr.setNext(next);
             next.setPrev(curr);
@@ -42,11 +71,16 @@ public class List<T> extends ListAbstract<T> {
         this.length = tab.length;
     }
 
+    /**
+     * Ajoute un élément au début de la liste.
+     *
+     * @param t l'élément à ajouter
+     */
     @Override
-    public void push(T t){
-        if(this.last==null){
+    public void push(T t) {
+        if (this.last == null) {
             this.init(t);
-        }else{
+        } else {
             Element<T> newElement = new Element<>(t);
             newElement.next = this.first;
             this.first.prev = newElement;
@@ -54,11 +88,17 @@ public class List<T> extends ListAbstract<T> {
             this.length++;
         }
     }
+
+    /**
+     * Ajoute un élément à la fin de la liste.
+     *
+     * @param t l'élément à ajouter
+     */
     @Override
-    public void append(T t){
-        if(this.last==null){
+    public void append(T t) {
+        if (this.last == null) {
             this.init(t);
-        }else{
+        } else {
             Element<T> newElement = new Element<>(t);
             newElement.prev = this.last;
             this.last.next = newElement;
@@ -67,6 +107,12 @@ public class List<T> extends ListAbstract<T> {
         }
     }
 
+    /**
+     * Retourne une nouvelle liste contenant tous les éléments qui satisfont le filtre spécifié.
+     *
+     * @param f le filtre à appliquer
+     * @return une nouvelle liste contenant les éléments filtrés
+     */
     @Override
     public List<T> findAll(Filtre<T> f) {
         List<T> newList = new List<>();
@@ -78,5 +124,4 @@ public class List<T> extends ListAbstract<T> {
         }
         return newList;
     }
-
 }
