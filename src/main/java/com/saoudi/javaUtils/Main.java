@@ -1,5 +1,8 @@
 package com.saoudi.javaUtils;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import static com.diogonunes.jcolor.Attribute.*;
 
 import static com.saoudi.javaUtils.ConsoleColor.*;

@@ -1,5 +1,6 @@
 package com.saoudi.javaUtils;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -155,4 +156,16 @@ public class List<T> extends ListAbstract<T> {
         }
         return res;
     }
+
+//    public T[] toArrayTest(){
+//        if(first==null) return null;
+//        T[] res = (T[]) Array.newInstance(first.element.getClass(), length);
+////        T[] res = (T[]) new Object[length];
+//        int i = 0;
+//        for(T t:this){
+//            res[i] = t;
+//            i++;
+//        }
+//        return res;
+//    }
 }

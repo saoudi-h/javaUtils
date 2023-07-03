@@ -120,4 +120,8 @@ public class Point implements Cloneable {
     public void setY(int y) {
         this.y = y;
     }
+
+    public double module(){
+        return Math.sqrt(x*x + y*y);
+    }
 }

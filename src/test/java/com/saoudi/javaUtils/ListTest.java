@@ -325,4 +325,25 @@ public class ListTest {
         assertSame(tab[3],array[3]);
         assertSame(tab[4],array[4]);
     }
+
+//    @Test
+//    public void testToArrayTest() {
+//        Point[] array = {new Point(1), new Point(2), new Point(3), new Point(4), new Point(5)};
+//        List<Point> list2 = new List<>(array);
+//        Point[] tab = list2.toArrayTest();
+//        assertEquals(list2.length, tab.length);
+//        assertEquals(tab[0],array[0]);
+//        assertEquals(tab[1],array[1]);
+//        assertEquals(tab[2],array[2]);
+//        assertEquals(tab[3],array[3]);
+//        assertEquals(tab[4],array[4]);
+//
+//
+//        assertSame(tab[0],array[0]);
+//        assertSame(tab[1],array[1]);
+//        assertSame(tab[2],array[2]);
+//        assertSame(tab[3],array[3]);
+//        assertSame(tab[4],array[4]);
+//    }
+
 }
